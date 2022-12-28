@@ -14,18 +14,18 @@ options(scipen = 999)
 ```
 
 ```{r}
-apr_2021 <- read_csv("../input/bike_trip_data/202104-divvy-tripdata.csv")
-may_2021 <- read_csv("../input/bike_trip_data/202105-divvy-tripdata.csv")
-jun_2021 <- read_csv("../input/bike_trip_data/202106-divvy-tripdata.csv")
-jul_2021 <- read_csv("../input/bike_trip_data/Desktop/202107-divvy-tripdata.csv")
-aug_2021 <- read_csv("../input/bike_trip_data/Desktop/202108-divvy-tripdata.csv")
-sep_2021 <- read_csv("../input/bike_trip_data/Desktop/202109-divvy-tripdata.csv")
-oct_2021 <- read_csv("../input/bike_trip_data/Desktop/202110-divvy-tripdata.csv")
-nov_2021 <- read_csv("../input/bike_trip_data/Desktop/202111-divvy-tripdata.csv")
-dec_2021 <- read_csv("../input/bike_trip_data/Desktop/202112-divvy-tripdata.csv")
-jan_2022 <- read_csv("../input/bike_trip_data/Desktop/202201-divvy-tripdata.csv")
-feb_2022 <- read_csv("../input/bike_trip_data/Desktop/202202-divvy-tripdata.csv")
-mar_2022 <- read_csv("../input/bike_trip_data/Desktop/202203-divvy-tripdata.csv")
+apr_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202104-divvy-tripdata.csv")
+may_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202105-divvy-tripdata.csv")
+jun_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202106-divvy-tripdata.csv")
+jul_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202107-divvy-tripdata.csv")
+aug_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202108-divvy-tripdata.csv")
+sep_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202109-divvy-tripdata.csv")
+oct_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202110-divvy-tripdata.csv")
+nov_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202111-divvy-tripdata.csv")
+dec_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202112-divvy-tripdata.csv")
+jan_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202201-divvy-tripdata.csv")
+feb_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202202-divvy-tripdata.csv")
+mar_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202203-divvy-tripdata.csv")
 ```
 
 ```{r}
