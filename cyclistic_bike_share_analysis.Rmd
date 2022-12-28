@@ -1,0 +1,214 @@
+---
+title: "Cyclistic Bike Share Analysis"
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(ggplot2)
+options(scipen = 999)
+```
+
+```{r}
+apr_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202104-divvy-tripdata.csv")
+may_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202105-divvy-tripdata.csv")
+jun_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202106-divvy-tripdata.csv")
+jul_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202107-divvy-tripdata.csv")
+aug_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202108-divvy-tripdata.csv")
+sep_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202109-divvy-tripdata.csv")
+oct_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202110-divvy-tripdata.csv")
+nov_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202111-divvy-tripdata.csv")
+dec_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202112-divvy-tripdata.csv")
+jan_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202201-divvy-tripdata.csv")
+feb_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202202-divvy-tripdata.csv")
+mar_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202203-divvy-tripdata.csv")
+```
+
+```{r}
+bike_tripdata <- rbind(apr_2021, may_2021, jun_2021, jul_2021, aug_2021, sep_2021, oct_2021, nov_2021, dec_2021, jan_2022, feb_2022, mar_2022)
+```
+
+```{r}
+glimpse(bike_tripdata)
+```
+
+```{r}
+skimr::skim(bike_tripdata)
+```
+
+```{r}
+bike_tripdata <- na.omit(bike_tripdata)
+```
+
+
+```{r}
+bike_tripdata <- bike_tripdata[! (bike_tripdata$started_at > bike_tripdata$ended_at),]
+```
+
+```{r}
+bike_tripdata <- bike_tripdata %>% 
+  mutate(duration = as.numeric(difftime(ended_at, started_at, units = "mins"))) %>% 
+  mutate(day_of_week = format(started_at, format ="%A")) %>% 
+  mutate(month = format(started_at, format = "%B_%Y")) %>% 
+  mutate(hour = as.numeric(difftime(ended_at, started_at, units = "hours"))) %>% 
+  glimpse()
+```
+
+```{r}
+bike_tripdata <- bike_tripdata[! (bike_tripdata$duration <= 0),]
+```
+
+```{r}
+bike_tripdata$day_of_week <- ordered(bike_tripdata$day_of_week, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday"))
+```
+
+```{r}
+bike_tripdata$month <- ordered(bike_tripdata$month, levels = c("April_2021", "May_2021", "June_2021", "July_2021", "August_2021", "September_2021", "October_2021", "November_2021", "December_2021", "January_2022", "February_2022", "March_2022"))
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(member_casual) %>% 
+    summarize(min_duration = min(duration), max_duration = max(duration), 
+              avg_duration = mean(duration), median_duration = median(duration))
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(member_casual, day_of_week) %>% 
+    summarize(bike_count = n(), avg_duration = mean(duration))
+```
+
+```{r}
+bike_tripdata %>% 
+  ggplot(aes(x=member_casual)) +
+  geom_bar(fill="#09a3b8") +
+  labs(
+    title = "Total Number of Rides for Each User Type",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Type of User",
+    y = "Number of rides"
+  ) +
+  scale_y_continuous(labels = label_number(suffix = " M", scale = 1e-6)) +
+  geom_text(stat = "count", aes(label = ..count..), position = position_stack(vjust = 0.5))
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(rideable_type,member_casual) %>% 
+  summarize(bike_count = n()) %>% 
+  ggplot(aes(x = member_casual,
+             y = bike_count,
+             fill = rideable_type, 
+             )) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Bike Preference by User Typer",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Type of User",
+    y = "Bike Count",
+    fill = "Bike Type"
+  ) +
+  geom_text(aes(label = bike_count), position = position_stack(vjust = 0.5))
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(member_casual, month) %>% 
+  summarize(bike_count = n()) %>% 
+  ggplot(aes(x = month,
+             y = bike_count,
+             fill = member_casual)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(
+    title = "Number of Rides per Month for Each User Type",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Month_Year",
+    y = "Bike Count",
+    fill = "User Type"
+  ) +
+   coord_flip()
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(member_casual, day_of_week) %>% 
+  summarize(bike_count = n()) %>% 
+  ggplot(aes(x = day_of_week,
+             y = bike_count,
+             fill = member_casual)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(
+    title = "Number of Rides per Month for Each User Type",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Day of Week",
+    y = "Bike Count",
+    fill = "User Type"
+  ) +
+  coord_flip()
+```
+
+```{r}
+bike_tripdata %>% 
+  select(member_casual, hour) %>% 
+  group_by(member_casual) %>% 
+  summarize(total_duration = round(sum(hour),2)) %>% 
+  ggplot(aes(x = member_casual,
+             y = total_duration)) +
+  geom_bar(stat = "identity",
+           fill = "#FF8000") +
+  labs(
+    title = "Total Duration in Hours for Each User Type",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Type of User",
+    y = "Total Duration (Hours)"
+  ) +
+  geom_text(aes(label = total_duration), position = position_stack(vjust = 0.5))
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(member_casual, month) %>% 
+  summarize(average_duration = round(mean(duration),2)) %>% 
+  ggplot(aes(x = month,
+             y = average_duration,
+             fill = member_casual)) + 
+  geom_bar(stat ="identity") +
+  coord_flip() +
+  facet_wrap(member_casual~.) +
+  labs(
+    title = "Average Bike Ride Duration by Month for Each User Type",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Month_Year",
+    y = "Duration (minutes)",
+    fill = "User Type"
+  ) +
+  coord_flip() +
+    geom_text(aes(label = average_duration), position = position_fill(), hjust = -2.15)
+```
+
+```{r}
+bike_tripdata %>% 
+  group_by(member_casual, day_of_week) %>% 
+  summarize(average_duration = round(mean(duration),2)) %>% 
+  ggplot(aes(x = day_of_week,
+             y = average_duration,
+             fill = member_casual)) + 
+  geom_bar(stat ="identity") +
+  coord_flip() +
+  facet_wrap(member_casual~.) +
+  labs(
+    title = "Average Bike Ride Duration by Month for Each User Type",
+    subtitle = "(April 2021 to March 2022)",
+    x = "Day Of Week",
+    y = "Duration (minutes)",
+    fill = "User Type"
+  ) +
+  coord_flip() +
+    geom_text(aes(label = average_duration), position = position_fill(), hjust = -2.2)
+```
+
