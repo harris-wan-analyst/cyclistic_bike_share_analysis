@@ -1,7 +1,10 @@
 ---
 title: "Cyclistic Bike Share Analysis"
+output:
+  html_document:
+    df_print: paged
 ---
-
+### Load library packages
 ```{r}
 library(tidyverse)
 library(lubridate)
@@ -13,6 +16,7 @@ library(ggplot2)
 options(scipen = 999)
 ```
 
+### Read the 12 CSV files
 ```{r}
 apr_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202104-divvy-tripdata.csv")
 may_2021 <- read_csv("/Users/chunyinharriswan/Desktop/202105-divvy-tripdata.csv")
@@ -28,10 +32,12 @@ feb_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202202-divvy-tripdata.csv"
 mar_2022 <- read_csv("/Users/chunyinharriswan/Desktop/202203-divvy-tripdata.csv")
 ```
 
+### Combine datasets
 ```{r}
 bike_tripdata <- rbind(apr_2021, may_2021, jun_2021, jul_2021, aug_2021, sep_2021, oct_2021, nov_2021, dec_2021, jan_2022, feb_2022, mar_2022)
 ```
 
+### Check data type and data structure
 ```{r}
 glimpse(bike_tripdata)
 ```
@@ -40,15 +46,19 @@ glimpse(bike_tripdata)
 skimr::skim(bike_tripdata)
 ```
 
+## Data cleaning and manipulation
+
+### Remove all NA values 
 ```{r}
 bike_tripdata <- na.omit(bike_tripdata)
 ```
 
-
+### Remove rows with start time later than end time
 ```{r}
 bike_tripdata <- bike_tripdata[! (bike_tripdata$started_at > bike_tripdata$ended_at),]
 ```
 
+### Add columns (ride duration / day of week / month / hour) for further analysis 
 ```{r}
 bike_tripdata <- bike_tripdata %>% 
   mutate(duration = as.numeric(difftime(ended_at, started_at, units = "mins"))) %>% 
@@ -58,10 +68,12 @@ bike_tripdata <- bike_tripdata %>%
   glimpse()
 ```
 
+### Remove ride duration that is "0"
 ```{r}
 bike_tripdata <- bike_tripdata[! (bike_tripdata$duration <= 0),]
 ```
 
+### Order day_of_week and month
 ```{r}
 bike_tripdata$day_of_week <- ordered(bike_tripdata$day_of_week, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday"))
 ```
@@ -70,6 +82,7 @@ bike_tripdata$day_of_week <- ordered(bike_tripdata$day_of_week, levels = c("Mond
 bike_tripdata$month <- ordered(bike_tripdata$month, levels = c("April_2021", "May_2021", "June_2021", "July_2021", "August_2021", "September_2021", "October_2021", "November_2021", "December_2021", "January_2022", "February_2022", "March_2022"))
 ```
 
+### Analyze the min / max / avg / median ride duration of member and casual riders
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual) %>% 
@@ -77,12 +90,14 @@ bike_tripdata %>%
               avg_duration = mean(duration), median_duration = median(duration))
 ```
 
+### Analyze the mean duration of member and casual riders by day of week
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, day_of_week) %>% 
     summarize(bike_count = n(), avg_duration = mean(duration))
 ```
 
+### Total Number of Rides for Each User Type
 ```{r}
 bike_tripdata %>% 
   ggplot(aes(x=member_casual)) +
@@ -97,6 +112,7 @@ bike_tripdata %>%
   geom_text(stat = "count", aes(label = ..count..), position = position_stack(vjust = 0.5))
 ```
 
+### Bike Preference by User Typer
 ```{r}
 bike_tripdata %>% 
   group_by(rideable_type,member_casual) %>% 
@@ -116,6 +132,7 @@ bike_tripdata %>%
   geom_text(aes(label = bike_count), position = position_stack(vjust = 0.5))
 ```
 
+### Number of Rides per Month for Each User Type
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, month) %>% 
@@ -134,6 +151,7 @@ bike_tripdata %>%
    coord_flip()
 ```
 
+### Number of Rides per Month for Each User Type
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, day_of_week) %>% 
@@ -152,6 +170,7 @@ bike_tripdata %>%
   coord_flip()
 ```
 
+### Total Duration in Hours for Each User Type
 ```{r}
 bike_tripdata %>% 
   select(member_casual, hour) %>% 
@@ -170,6 +189,7 @@ bike_tripdata %>%
   geom_text(aes(label = total_duration), position = position_stack(vjust = 0.5))
 ```
 
+### Average Bike Ride Duration by Month for Each User Type
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, month) %>% 
@@ -191,6 +211,7 @@ bike_tripdata %>%
     geom_text(aes(label = average_duration), position = position_fill(), hjust = -2.15)
 ```
 
+### Average Bike Ride Duration by Month for Each User Type
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, day_of_week) %>% 
