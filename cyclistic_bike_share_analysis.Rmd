@@ -151,7 +151,7 @@ bike_tripdata %>%
    coord_flip()
 ```
 
-### Number of Rides per Month for Each User Type
+### Number of Rides per Day of Week for Each User Type
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, day_of_week) %>% 
@@ -161,7 +161,7 @@ bike_tripdata %>%
              fill = member_casual)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   labs(
-    title = "Number of Rides per Month for Each User Type",
+    title = "Number of Rides per Day of Week for Each User Type",
     subtitle = "(April 2021 to March 2022)",
     x = "Day of Week",
     y = "Bike Count",
@@ -170,7 +170,7 @@ bike_tripdata %>%
   coord_flip()
 ```
 
-### Total Duration in Hours for Each User Type
+### Total Bike Ride Duration in Hours for Each User Type
 ```{r}
 bike_tripdata %>% 
   select(member_casual, hour) %>% 
@@ -181,7 +181,7 @@ bike_tripdata %>%
   geom_bar(stat = "identity",
            fill = "#FF8000") +
   labs(
-    title = "Total Duration in Hours for Each User Type",
+    title = "Total Bike Ride Duration in Hours for Each User Type",
     subtitle = "(April 2021 to March 2022)",
     x = "Type of User",
     y = "Total Duration (Hours)"
@@ -211,7 +211,7 @@ bike_tripdata %>%
     geom_text(aes(label = average_duration), position = position_fill(), hjust = -2.15)
 ```
 
-### Average Bike Ride Duration by Month for Each User Type
+### Average Bike Ride Duration by Day of Week for Each User Type
 ```{r}
 bike_tripdata %>% 
   group_by(member_casual, day_of_week) %>% 
@@ -223,7 +223,7 @@ bike_tripdata %>%
   coord_flip() +
   facet_wrap(member_casual~.) +
   labs(
-    title = "Average Bike Ride Duration by Month for Each User Type",
+    title = "Average Bike Ride Duration by Day of Week for Each User Type",
     subtitle = "(April 2021 to March 2022)",
     x = "Day Of Week",
     y = "Duration (minutes)",
