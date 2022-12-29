@@ -2,6 +2,8 @@
 
 ## Background Information
 
+![download](https://user-images.githubusercontent.com/117702329/209886294-4bf9d3a1-3514-4c35-8b97-c4528a489bd1.jpg)
+
 ####  My Role: Junior data analyst at the marketing analyst team
 
 ####  Situation: Cyclistic financial analysts concluded that annual members are more profitable than casual riders
@@ -9,6 +11,8 @@
 ####  Objective: Analyze datasets and share findings and recommendations
 
 ## Ask Phase
+
+### (Define the business problem and confirm stakeholders expectations)
 
 #### Business Task: design marketing strategies aimed at converting casual riders into annual members
 
@@ -20,6 +24,8 @@
    *  Executive team
 
 ## Prepare Phase 
+
+### (Collect and store data for analysis)
 
 #### Data Source: Motivate International Inc. 
 
@@ -47,5 +53,15 @@
    - member_causal: type of bike user (casual / member)
 
 ## Process Phase
+
+### (Clean and transform data to ensure integrity)
+
 - Data Processing (line 7 - 47 in [R Markdown](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/cyclistic_bike_share_analysis.Rmd))
-- Data Cleaning (line 19 - 83 in [R Markdown](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/cyclistic_bike_share_analysis.Rmd))
+- Data Cleaning (line 49 - 83 in [R Markdown](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/cyclistic_bike_share_analysis.Rmd))
+
+## Analyze Phase
+
+### (Use data analysis tools to draw conclusions)
+
+- Data Aggregation (e.g. MIN / MAX / AVG / MEDIAIN --> line 85 - 98 in [R Markdown](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/cyclistic_bike_share_analysis.Rmd))
+
