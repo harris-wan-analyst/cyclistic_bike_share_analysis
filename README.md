@@ -2,7 +2,7 @@
 
 ## Background Information
 
-![download](https://user-images.githubusercontent.com/117702329/209886294-4bf9d3a1-3514-4c35-8b97-c4528a489bd1.jpg)
+![download](https://user-images.githubusercontent.com/117702329/209886711-f6763dfc-d0fd-47a6-843b-81c10cf8021a.png)
 
 ####  My Role: Junior data analyst at the marketing analyst team
 
@@ -65,3 +65,56 @@
 
 - Data Aggregation (e.g. MIN / MAX / AVG / MEDIAIN --> line 85 - 98 in [R Markdown](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/cyclistic_bike_share_analysis.Rmd))
 
+## Share Phase
+
+### (Interpret and communicate results to others to make data-driven decisions)
+
+- Total Number of Rides for Each User Type
+- Bike Preference by User Type
+- Number of Rides per Month for Each User Type
+- Number of Rides per Day of Week for Each User Type
+- Total Bike Ride Duration in Hours for Each User Type
+- Average Bike Ride Duration by Month for Each User Type
+- Average Bike Ride Duration by Day of Week for Each User Type
+
+#### R Code --> line 100 to 234 in [R Markdown](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/cyclistic_bike_share_analysis.Rmd)
+
+## Act Phase
+
+### (Put your insights to work to solve the original problem)
+
+#### Conclusions from the data and visualizations
+
+1.  Casual riders and annual riders account for 44% and 66% of the total number of rides respectively
+
+2.  Classic bikes are most prefered for both user types, and only docked bikes are rode by casual riders
+
+3.  Both causal and annual riders rode the most trips between July 2021 to September 2021
+
+4.  Casual members rode most on weekends while annual members rode most on weekends
+
+5.  Casual riders rode 1.95 hours more than annual riders
+
+6.  Both casual and annual riders rode the longest duration between April 2021 to July 2021
+  
+7.  Casual riders rode the longest on Monday, Saturday, and Sunday while annual riders ride the longest from Friday to Sunday
+
+#### Recommendations
+
+1. Advertise the marketing campaign in warmer months (July to September)
+
+2. Introduce reward program for more and longer rides (1.5x points for annaul riders)
+ 
+3. Increase the bike rental fees on weekends for casual riders 
+
+4. Provide more membership benefits to annual riders
+
+5. Improve the design and quality of bikes towards annual riders 
+
+#### Additional Data for Further Analysis
+
+1. Usage of the bikes (e.g. transportation / leisure )
+
+2. Inclusion of demographics data
+
+4. Churn rate for regression analysis 
