@@ -112,7 +112,7 @@ bike_tripdata %>%
   geom_text(stat = "count", aes(label = ..count..), position = position_stack(vjust = 0.5))
 ```
 
-### Bike Preference by User Typer
+### Bike Preference by User Type
 ```{r}
 bike_tripdata %>% 
   group_by(rideable_type,member_casual) %>% 
