@@ -69,6 +69,7 @@
 
 ### (Interpret and communicate results to others to make data-driven decisions)
 
+- Look at the graphs here: [data visualizations](https://github.com/harris-wan-analyst/cyclistic_bike_share_analysis/blob/main/graphs.md)
 - Total Number of Rides for Each User Type
 - Bike Preference by User Type
 - Number of Rides per Month for Each User Type
