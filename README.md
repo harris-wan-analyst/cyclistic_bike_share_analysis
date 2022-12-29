@@ -85,31 +85,31 @@
 
 #### Conclusions from the data and visualizations
 
-1.  Casual riders and annual riders account for 44% and 66% of the total number of rides respectively
+1.  Casual riders and annual riders account for **44%** and **66%** of the total number of rides respectively
 
-2.  Classic bikes are most prefered for both user types, and only docked bikes are rode by casual riders
+2.  **Classic bikes** are most prefered for both user types, and only **docked bikes** are rode by casual riders
 
-3.  Both causal and annual riders rode the most trips between July 2021 to September 2021
+3.  Both causal and annual riders rode the most trips between **July 2021 to September 2021**
 
-4.  Casual members rode most on weekends while annual members rode most on weekends
+4.  Both casual and annual riders rode most on **weekends**.
 
-5.  Casual riders rode 1.95 hours more than annual riders
+5.  Casual riders rode **1.95** hours more than annual riders
 
-6.  Both casual and annual riders rode the longest duration between April 2021 to July 2021
+6.  Both casual and annual riders rode the **longest duration** between **April 2021 to July 2021**
   
-7.  Casual riders rode the longest on Monday, Saturday, and Sunday while annual riders ride the longest from Friday to Sunday
+7.  Casual riders rode the longest on **Monday, Saturday, and Sunday** while annual riders ride the longest from **Friday to Sunday**
 
 #### Recommendations
 
-1. Advertise the marketing campaign in warmer months (July to September)
+1. Advertise the marketing campaign in **warmer months** (July to September)
 
-2. Introduce reward program for more and longer rides (1.5x points for annaul riders)
+2. Introduce **reward program** for more and longer rides (**1.5x** points for annaul riders)
  
-3. Increase the bike rental fees on weekends for casual riders 
+3. Increase the bike **rental fees** on weekends for both riders 
 
-4. Provide more membership benefits to annual riders
+4. Provide more **membership benefits** to annual riders
 
-5. Improve the design and quality of bikes towards annual riders 
+5. Improve the **design and quality** of bikes towards annual riders 
 
 #### Additional Data for Further Analysis
 
