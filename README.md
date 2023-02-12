@@ -34,7 +34,7 @@
 #### Data Type: CSV file and Public data
 
 #### Data Description:
-   - Total of 12 datasets (View on Kaggle: [link](https://www.kaggle.com/code/harriswan11/google-capstone-cyclistic-bike-share-analysis/edit))
+   - Total of 12 datasets (View on Kaggle: [link](https://www.kaggle.com/code/harriswan11/google-capstone-cyclistic-bike-share-analysis?scriptVersionId=118910031))
    - Time period: April 2021 to March 2022 (12 months)
   
 #### Data Variables:
